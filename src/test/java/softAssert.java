@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -26,10 +27,16 @@ public class softAssert {
         @Test
         void vaildData() throws InterruptedException {
             driver.navigate().to("https://the-internet.herokuapp.com/login");
-            driver.findElement(By.id("username")).clear();
-            driver.findElement(By.id("username")).sendKeys("tomsmith");
-            driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
-            driver.findElement(By.id("password")).sendKeys(Keys.ENTER);
+            By username = By.id("username");
+            WebElement usernameEle = driver.findElement(username);
+           // driver.findElement(By.id("username")).clear();
+            usernameEle.clear();
+          usernameEle.sendKeys("tomsmith");
+           usernameEle.sendKeys("SuperSecretPassword!");
+           usernameEle.sendKeys(Keys.ENTER);
+//            driver.findElement(By.id("username")).sendKeys("tomsmith");
+//            driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+//            driver.findElement(By.id("password")).sendKeys(Keys.ENTER);
             String er ="you logged into a secure area";
 
             String ar = driver.findElement(By.id("flash")).getText();
